@@ -116,8 +116,8 @@ Class Organizer
                 continue
 
             currentItemHours := A_Now
-            EnvSub, currentItemHours, %A_LoopFileTimeModified%, hours
-            if (currentItemHours > hoursSinceModification)
+            EnvSub, currentItemHours, %A_LoopFileTimeModified%, minutes
+            if (currentItemHours > hoursSinceModification*60)
             {
                 if (action=this.ACTION_MOVE)
                 {
@@ -143,8 +143,8 @@ Class Organizer
                 continue
 
             currentItemHours := A_Now
-            EnvSub, currentItemHours, %A_LoopFileTimeModified%, hours
-            if (currentItemHours > hoursSinceModification)
+            EnvSub, currentItemHours, %A_LoopFileTimeModified%, minutes
+            if (currentItemHours > hoursSinceModification*60)
             {
                 if (action=this.ACTION_MOVE)
                 {

@@ -14,7 +14,7 @@ Every file or folder older than the amount of hours specified(48) will be moved 
 Parameter 1: Path to the folder you wish to sort.
 Parameter 2: Hours since the files/folders were modified.
 #1::
-Organizer.Organize("D:\Latest", 48)
+Organizer.Organize("D:\Downloads", 48)
 return
 
 ------ Example 2 ------
@@ -38,6 +38,13 @@ return
 */
 
 ; --------- User hotkeys here ----------
+
+
+
+; Shortcut Win + O
+#SC018::
+Organizer.Organize("D:\Downloads", 48)
+return
 
 
 
@@ -86,12 +93,14 @@ Class Organizer
                 continue
             }
 
+            Msgbox, %A_LoopFileFullPath%
+
             if InStr(A_LoopFileFullPath, ".unwanted") || InStr(A_LoopFileFullPath, this.INCOMPLETE_FOLDER_NAME) || !InStr(this.extensions, A_LoopFileExt)
                 continue
 
-            if (A_LoopFileSizeMB < this.EPISODE_FILESIZE_CAP) && RegExMatch(A_LoopFileName, this.EPISODE_REGEX_PATTERN)
+            if ((A_LoopFileSizeMB < this.EPISODE_FILESIZE_CAP) && RegExMatch(A_LoopFileName, this.EPISODE_REGEX_PATTERN)) || RegExMatch(A_LoopFileName, this.EPISODE_REGEX_PATTERN)
             {
-                destination := this.GetEpisodeSortFolder(toSortFolderEpisodes, A_LoopFileName) 
+                destination := this.GetEpisodeSortFolder(toSortFolderEpisodes, A_LoopFileName)
             }
             else if (A_LoopFileSizeMB > this.EPISODE_FILESIZE_CAP) && !RegExMatch(A_LoopFileName, this.EPISODE_REGEX_PATTERN)
             {

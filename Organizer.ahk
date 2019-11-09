@@ -14,7 +14,7 @@ Every file or folder older than the amount of hours specified(48) will be moved 
 Parameter 1: Path to the folder you wish to sort.
 Parameter 2: Hours since the files/folders were modified.
 #1::
-Organizer.Organize("D:\Downloads", 48)
+Organizer.Organize("D:\Latest", 48)
 return
 
 ------ Example 2 ------
@@ -92,8 +92,6 @@ Class Organizer
                 FileDelete, %A_LoopFileFullPath%
                 continue
             }
-
-            Msgbox, %A_LoopFileFullPath%
 
             if InStr(A_LoopFileFullPath, ".unwanted") || InStr(A_LoopFileFullPath, this.INCOMPLETE_FOLDER_NAME) || !InStr(this.extensions, A_LoopFileExt)
                 continue
